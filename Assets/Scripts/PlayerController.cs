@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.FullSerializer;
+using UnityEditor.Experimental.GraphView;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
@@ -7,6 +9,13 @@ public class PlayerController : MonoBehaviour
 {
     //向いている方向
     public Transform orientation;
+
+    public GameObject player;
+
+    // //振り返っていないかどうかを判定するレイの情報とbool
+    // Ray checkLookBack_ray;
+    // bool isLookBack;
+    // public LayerMask lookbackLayer;
 
     //rigidbody
     Rigidbody rb;
@@ -29,15 +38,16 @@ public class PlayerController : MonoBehaviour
     public AudioClip walkSE;
     public AudioClip runSE;
 
+
     //プレイヤーの状態
-    enum State
+    public enum MoveState
     {
         idle,
         walking,
         running
     }
 
-    State state;
+    MoveState state;
 
     void Start()
     {
@@ -52,6 +62,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        // CheckRay();
+
         KeyCheck();
         AnimCheck();
         PlayAudio();
@@ -59,6 +71,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+
         MovePlayer();
     }
 
@@ -67,10 +80,10 @@ public class PlayerController : MonoBehaviour
     {
         switch (state)
         {
-            case State.walking:
+            case MoveState.walking:
                 Move(walkSpeed);
                 break;
-            case State.running:
+            case MoveState.running:
                 Move(runSpeed);
                 break;
         }
@@ -108,38 +121,55 @@ public class PlayerController : MonoBehaviour
             | Input.GetButton("Vertical") & Input.GetKey(KeyCode.Space))
         {
             //state=running
-            state = State.running;
+            state = MoveState.running;
         }
         else if (Input.GetButton("Horizontal") | Input.GetButton("Vertical"))
         {
             //state=walking
-            state = State.walking;
+            state = MoveState.walking;
         }
         else
         {
             //state=idle
-            state = State.idle;
+            state = MoveState.idle;
         }
     }
+
+    // void CheckRay()
+    // {
+    //     //レイ設定
+    //     checkLookBack_ray = new Ray(orientation.transform.position, orientation.transform.forward);
+
+    //     //振り返っていないかどうかを判断する
+    //     if (Physics.Raycast(checkLookBack_ray, 2f, lookbackLayer))
+    //     {
+    //         // Debug.Log("振り返った");
+    //         isLookBack = true;
+    //     }
+    // }
 
     void PlayAudio()
     {
         //何らかのキーを押下した時、stateに応じて足音を鳴らす
         if (Input.anyKeyDown)
         {
+            audioSource.Stop();
+
             switch (state)
             {
-                case State.walking:
+                case MoveState.walking:
                     audioSource.PlayOneShot(walkSE);
                     break;
-                case State.running:
+                case MoveState.running:
                     audioSource.PlayOneShot(runSE);
                     break;
             }
         }
 
+        if (Input.GetKeyUp(KeyCode.Space)) { audioSource.Stop(); audioSource.PlayOneShot(walkSE); }
+
         //state=idleの時は足音停止
-        if (state == State.idle) { audioSource.Stop(); }
+        if (state == MoveState.idle) { audioSource.Stop(); }
 
     }
 
@@ -148,18 +178,25 @@ public class PlayerController : MonoBehaviour
     {
         switch (state)
         {
-            case State.walking:
+            case MoveState.walking:
                 animator.SetBool("walk", true);
                 animator.SetBool("run", false);
                 break;
-            case State.running:
+            case MoveState.running:
                 animator.SetBool("walk", false);
                 animator.SetBool("run", true);
                 break;
-            case State.idle:
+            case MoveState.idle:
                 animator.SetBool("walk", false);
                 animator.SetBool("run", false);
                 break;
         }
     }
+
+    //playerの行動状況を取得
+    public MoveState GetMoveState() { return state; }
+
+    // //振り返り判定
+    // public bool GetIsLookBack() { return isLookBack; }
+    // public void SetIsLookBack(bool isLookBack) { this.isLookBack = isLookBack; }
 }

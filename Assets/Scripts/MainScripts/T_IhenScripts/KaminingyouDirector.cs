@@ -64,12 +64,15 @@ public class KaminingyouDirector : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //UI可視化
-        kaminingyouUI.SetActive(true);
+        if (other.CompareTag("Player"))
+        {
+            //UI可視化
+            kaminingyouUI.SetActive(true);
 
-        //侵入フラグtrue
-        isEnter = true;
-        Debug.Log("通過");
+            //侵入フラグtrue
+            isEnter = true;
+            Debug.Log("通過");
+        }
     }
 
 
@@ -105,6 +108,7 @@ public class KaminingyouDirector : MonoBehaviour
         //challenge成功したら
         if (isChallenge)
         {
+            isTry = true;
             // Debug.Log("成功");
             peelOff.text = "挑戦成功";
 

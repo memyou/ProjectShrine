@@ -16,6 +16,10 @@ public class StageGenerator : MonoBehaviour
     public int preInstantiate; //前方にいくつつくっておくか
     public List<GameObject> generatedStageList = new List<GameObject>(); //出現させたステージチップの住所をリスト管理
 
+    //ステージ用親オブジェクト
+    public GameObject stages;
+    //プレイヤーのスクリプト：振り返り状況を取得する
+    public PlayerController playerController;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +34,8 @@ public class StageGenerator : MonoBehaviour
     {
         //現在のステージチップのインデックス
         int charaPositionIndex = CharaStageChipIndex();
+        // Debug.Log("charaposIndex:" + charaPositionIndex);
+        // Debug.Log("いまここ：" + stages.transform.GetChild(1).gameObject.name);
 
         //次のステージチップに入ったらステージの更新処理をおこなう
         if (charaPositionIndex + preInstantiate > currentChipIndex)
@@ -75,6 +81,10 @@ public class StageGenerator : MonoBehaviour
             new Vector3(chipIndex * -9.1f, chipIndex * 1.7f, chipIndex * StageChipSize * 0.95f), //今の位置の一個先につくる
             Quaternion.identity
         );
+
+        // Debug.Log(stageObject.transform.parent.name);
+        // Debug.Break();
+
         return stageObject;
     }
 

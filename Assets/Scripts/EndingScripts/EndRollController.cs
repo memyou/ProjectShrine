@@ -62,7 +62,7 @@ public class EndRollController : MonoBehaviour
 
         //キャンバスの縦サイズ取得
         canvasHeight = endRollCanvas.rect.height;
-        Debug.Log("canvasY" + canvasHeight);
+        // Debug.Log("canvasY" + canvasHeight);
 
         // Debug.Log(screenHeight);
         // Debug.Break();
@@ -71,6 +71,9 @@ public class EndRollController : MonoBehaviour
         titleBoxSize = endRollTitle.preferredHeight;
         textBoxSize = endRollText.preferredHeight;
         msgBoxSize = endRollMsg.preferredHeight;
+
+        // Debug.Log(textBoxSize);
+        // Debug.Break();
 
         //全テキストボックスの位置を調整
         SetPosition();
@@ -98,8 +101,8 @@ public class EndRollController : MonoBehaviour
         //テキスト:isOutTitle:trueかつisOutText:falseならtextのスクロール実行
         if (isOutTitle && !isOutText)
         {
-            float limit = textBoxSize + canvasHeight / 2;
-            if (limit <= endRollText.rectTransform.localPosition.y)
+            // float limit = textBoxSize + canvasHeight / 2;
+            if (endRollText.rectTransform.anchoredPosition.y >= textBoxSize + canvasHeight / 2)
             {
                 //画面上辺中央にきたらfalse
                 isOutText = true;
@@ -116,7 +119,7 @@ public class EndRollController : MonoBehaviour
         if (isOutTitle && isOutText && !isStopMsg)
         {
             //中央で止まる
-            if (endRollMsg.rectTransform.localPosition.y >= 0)
+            if (endRollMsg.rectTransform.anchoredPosition.y >= 0)
             {
                 isStopMsg = true;
             }
@@ -125,7 +128,7 @@ public class EndRollController : MonoBehaviour
 
 
         }
-        else if (isOutText && isOutText && isStopMsg)
+        if (isOutText && isOutText && isStopMsg)
         {
             endRollMsgCoroutine = StartCoroutine(GoToStartScene());
         }
@@ -156,9 +159,6 @@ public class EndRollController : MonoBehaviour
 
         //テキストの位置、下辺中央
         float bottom = canvasHeight / 2;
-        // Debug.Log("画面縦サイズ" + canvasHeight);
-        // Debug.Log("画面の半分" + bottom);
-
 
         endRollText.rectTransform.localPosition = new Vector3(0, -bottom, 0);
 

@@ -29,11 +29,6 @@
 三田
 
 
-<size=50>-UI-</size>
-
-三田
-
-
 <size=50>-ゲームステージ-</size>
 
 佐藤
@@ -55,19 +50,28 @@
 <size=50>-3DCG-</size>
 
 さびねずみ
+
 3DCG素材屋
+
 Kobashop
+
 鏑屋のお面屋
+
 eto-materials
+
 オノップ
+
 mixamo
+
 RX Factory
 
 
 <size=50>-SE/BGM-</size>
 
 効果音ラボ
+
 Causality Sound
+
 稿屋 隆
 
 

@@ -40,12 +40,10 @@ public class Main_PlayerCam : MonoBehaviour
 
         //y方向のみ視点に上限
         xRotation = Mathf.Clamp(xRotation, -60, 60);
-        yRotation = Mathf.Clamp(yRotation, -135, 135);
 
         //カメラとプレイヤーの向きを動かす
         CamHolder.rotation = Quaternion.Euler(xRotation, yRotation, 0);
         orientation.rotation = Quaternion.Euler(0, yRotation, 0);
-        // playerRotation.rotation = Quaternion.Euler(0, yRotation, 0);
 
     }
 
