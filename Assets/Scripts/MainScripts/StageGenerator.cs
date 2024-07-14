@@ -82,6 +82,7 @@ public class StageGenerator : MonoBehaviour
             Quaternion.identity
         );
 
+        stageObject.transform.parent = stages.transform;
         // Debug.Log(stageObject.transform.parent.name);
         // Debug.Break();
 

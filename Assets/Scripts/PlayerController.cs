@@ -12,10 +12,10 @@ public class PlayerController : MonoBehaviour
 
     public GameObject player;
 
-    // //振り返っていないかどうかを判定するレイの情報とbool
-    // Ray checkLookBack_ray;
-    // bool isLookBack;
-    // public LayerMask lookbackLayer;
+    //振り返っていないかどうかを判定するレイの情報とbool
+    Ray checkLookBack_ray;
+    bool isLookBack;
+    public LayerMask lookbackLayer;
 
     //rigidbody
     Rigidbody rb;
@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        // CheckRay();
+        CheckRay();
 
         KeyCheck();
         AnimCheck();
@@ -135,18 +135,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // void CheckRay()
-    // {
-    //     //レイ設定
-    //     checkLookBack_ray = new Ray(orientation.transform.position, orientation.transform.forward);
+    void CheckRay()
+    {
+        //レイ設定
+        checkLookBack_ray = new Ray(orientation.transform.position, orientation.transform.forward);
 
-    //     //振り返っていないかどうかを判断する
-    //     if (Physics.Raycast(checkLookBack_ray, 2f, lookbackLayer))
-    //     {
-    //         // Debug.Log("振り返った");
-    //         isLookBack = true;
-    //     }
-    // }
+        //振り返っていないかどうかを判断する
+        if (Physics.Raycast(checkLookBack_ray, 2f, lookbackLayer))
+        {
+            Debug.Log("振り返った");
+            isLookBack = true;
+        }
+    }
 
     void PlayAudio()
     {
@@ -196,7 +196,7 @@ public class PlayerController : MonoBehaviour
     //playerの行動状況を取得
     public MoveState GetMoveState() { return state; }
 
-    // //振り返り判定
-    // public bool GetIsLookBack() { return isLookBack; }
-    // public void SetIsLookBack(bool isLookBack) { this.isLookBack = isLookBack; }
+    //振り返り判定
+    public bool GetIsLookBack() { return isLookBack; }
+    public void SetIsLookBack(bool isLookBack) { this.isLookBack = isLookBack; }
 }

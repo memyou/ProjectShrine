@@ -47,6 +47,10 @@ public class EndRollController : MonoBehaviour
     Coroutine endRollTitleCoroutine;
     Coroutine endRollMsgCoroutine;
 
+    //スクロール限界値
+    float titleLimit;
+    float textLimit;
+
     void Awake()
     {
         //ED曲取得
@@ -57,26 +61,20 @@ public class EndRollController : MonoBehaviour
     void Start()
     {
         //画面のサイズを取得
-        //currentResolutionある方がいいのか？ない方がいいのか？
-        // screenHeight = Screen.height;
-
         //キャンバスの縦サイズ取得
         canvasHeight = endRollCanvas.rect.height;
-        // Debug.Log("canvasY" + canvasHeight);
-
-        // Debug.Log(screenHeight);
-        // Debug.Break();
 
         //テキストボックスのサイズ取得
         titleBoxSize = endRollTitle.preferredHeight;
         textBoxSize = endRollText.preferredHeight;
         msgBoxSize = endRollMsg.preferredHeight;
 
-        // Debug.Log(textBoxSize);
-        // Debug.Break();
-
         //全テキストボックスの位置を調整
         SetPosition();
+
+        //リミット計算
+        titleLimit = canvasHeight / 2 + titleBoxSize;
+        textLimit = textBoxSize;
 
         //ED再生
         music.Play();
@@ -102,7 +100,7 @@ public class EndRollController : MonoBehaviour
         if (isOutTitle && !isOutText)
         {
             // float limit = textBoxSize + canvasHeight / 2;
-            if (endRollText.rectTransform.anchoredPosition.y >= textBoxSize + canvasHeight / 2)
+            if (endRollText.rectTransform.anchoredPosition.y >= textLimit)
             {
                 //画面上辺中央にきたらfalse
                 isOutText = true;
@@ -177,8 +175,7 @@ public class EndRollController : MonoBehaviour
         keyInfo.enabled = true;
 
         //画面外に出たら
-        float limit = titleBoxSize + canvasHeight / 2;
-        if (limit <= endRollTitle.rectTransform.anchoredPosition.y)
+        if (titleLimit <= endRollTitle.rectTransform.anchoredPosition.y)
         {
             //フラグをtrue
             isOutTitle = true;
@@ -207,7 +204,7 @@ public class EndRollController : MonoBehaviour
 
         //コルーチン停止とタイトル遷移
         StopCoroutine(endRollMsgCoroutine);
-        SceneManager.LoadScene("TiltleScene");
+        SceneManager.LoadScene("TitleScene");
     }
 
 }

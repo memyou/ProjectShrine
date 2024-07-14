@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.Common;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
@@ -18,14 +19,24 @@ public class GameController : MonoBehaviour
     //ノルマ数
     const int MAX_STAGE = 5;
 
+    //ポーズ画面を開いているかどうか
+    bool isPause;
+    //ポーズ画面用UI
+    public GameObject pauseUI;
+
     void Start()
     {
         playerController = player.GetComponent<PlayerController>();
         point = 0;
+
+        pauseUI.SetActive(false);
     }
 
     void Update()
     {
+        //Pauseのチェック
+        CheckedPause();
+
         //pointがMAX_STAGEと同数であれば
         if (point == MAX_STAGE)
         {
@@ -52,6 +63,47 @@ public class GameController : MonoBehaviour
         point = 0;
     }
 
+    //ポイント参照
     public int GetPoint() { return point; }
 
+    //ポーズ画面を表示する
+    void CheckedPause()
+    {
+        //isPause=falseの時にH_keyでisPause=true
+        if (!isPause)
+        {
+            if (Input.GetKeyDown(KeyCode.H))
+            {
+                Debug.Log("表示H押した");
+                //H_key押したら
+                isPause = true;
+
+                StartCoroutine(Pause());
+            }
+        }
+        else
+        {//isPause=trueの時にH_keyでisPause=false
+            if (Input.GetKeyDown(KeyCode.H))
+            {
+                isPause = false;
+            }
+        }
+    }
+
+    //ポーズ
+    IEnumerator Pause()
+    {
+        // H_keyが押された時の処理
+        //pauseUIを活性化
+        pauseUI.SetActive(true);
+
+        //isPause=false==trueになったら
+        yield return new WaitUntil(() => isPause == false);
+
+        //pauseUIを非活性化
+        pauseUI.SetActive(false);
+
+        // //コルーチン終了
+        yield break;
+    }
 }

@@ -14,8 +14,6 @@ public class StageInteract : MonoBehaviour
     //コンポーネント
     AudioSource audioSource;
 
-    //イメージ表示可能状態
-    bool canShowImage;
     //イメージ表示状態
     bool isShowImage;
 
@@ -28,6 +26,7 @@ public class StageInteract : MonoBehaviour
         ruleUI.SetActive(false);
         ruleImage.SetActive(false);
         inari.SetActive(false);
+        remy.SetActive(false);
     }
 
     void OnTriggerEnter(Collider other)
@@ -37,8 +36,6 @@ public class StageInteract : MonoBehaviour
             if (other.CompareTag("Player"))
             {
                 moveRemy = true;
-                canShowImage = true;
-                // Debug.Log(canShowImage);
 
                 //コライダー侵入でUI表示
                 ruleUI.SetActive(true);
@@ -50,31 +47,49 @@ public class StageInteract : MonoBehaviour
 
     }
 
+
     void OnTriggerStay(Collider other)
     {
-        //fキー押下でイメージ表示
-        if (Input.GetKeyDown(KeyCode.F))
+        if (other.CompareTag("Player"))
         {
-            // Debug.Log("F-key");
-            isShowImage = true;
-            ruleImage.SetActive(true);
-            canShowImage = true;
-        }
+            if (!isShowImage)
+            {
+                if (Input.GetKeyDown(KeyCode.F))
+                {
+                    isShowImage = true;
+                    StartCoroutine(RuleImage());
+                }
+            }
+            else
+            {
+                //表示状態でｆキー、イメージ非表示
+                if (Input.GetKeyDown(KeyCode.F))
+                {
+                    isShowImage = false;
+                }
+            }
 
-        //表示状態でｆキー離すとイメージ非表示
-        if (isShowImage && Input.GetKeyUp(KeyCode.F))
-        {
-            ruleImage.SetActive(false);
-            canShowImage = false;
         }
+    }
+
+    IEnumerator RuleImage()
+    {
+        //trueの時
+        ruleImage.SetActive(true);
+
+        //isShowImage=false==trueの時
+        yield return new WaitUntil(() => isShowImage == false);
+
+        ruleImage.SetActive(false);
+
+        yield break;
+
     }
 
     void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            canShowImage = false;
-
             //コライダー出たらUI非表示、もしイメージ出したままなら非表示
             ruleUI.SetActive(false);
             ruleImage.SetActive(false);
