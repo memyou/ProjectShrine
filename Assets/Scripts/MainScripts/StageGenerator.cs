@@ -90,6 +90,7 @@ public class StageGenerator : MonoBehaviour
     }
 
     //Stageオブジェクトのリスト番号をランダムにピックアップ
+    //！！！確率で異変と通常を出現するようにする！！！
     public int NextStage()
     {
         return Random.Range(0, stageChips.Length);

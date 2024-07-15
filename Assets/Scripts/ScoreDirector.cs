@@ -34,10 +34,6 @@ public class ScoreDirector : MonoBehaviour
             info.SetActive(true);
         }
 
-
-        //侵入フラグtrueで判定するようにする
-        //トリガー範囲の先に進まず、手前で一度後退した場合にも再度判定が利くように
-
         //sushiタグのついたトリガーに侵入したら
         if (other.CompareTag("Sushi"))
         {
