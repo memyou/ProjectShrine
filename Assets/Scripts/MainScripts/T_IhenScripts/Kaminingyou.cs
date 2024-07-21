@@ -18,7 +18,7 @@ public class Kaminingyou : MonoBehaviour, IInteractable
     public float radius; //キャスト半径
     public LayerMask targetLayer; //キャストが取得するレイヤー：player
 
-    public Collider[] result = new Collider[1]; //取得するコライダー,プレイヤーのみなので１でOK
+    Collider[] result = new Collider[1]; //取得するコライダー,プレイヤーのみなので１でOK
 
     private void Start()
     {
@@ -38,7 +38,6 @@ public class Kaminingyou : MonoBehaviour, IInteractable
             //プレイヤーが範囲外にいるとき:はがせない
             default:
                 // Debug.Log("player離脱中");
-                // peelOffText.enabled = false;
                 break;
         }
 
@@ -54,7 +53,6 @@ public class Kaminingyou : MonoBehaviour, IInteractable
     public void Interact()
     {
         //インタラクト時の処理、はがされたらオブジェクト破棄
-        // peelOffText.enabled = true;
         if (Input.GetKeyDown(KeyCode.F))
         {
             Debug.Log("はがした");

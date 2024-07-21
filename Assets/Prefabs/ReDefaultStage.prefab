@@ -54212,6 +54212,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7335432312432187193}
   - component: {fileID: 4630904265969335007}
+  - component: {fileID: 8243895586744732279}
   m_Layer: 0
   m_Name: StageExitTrigger
   m_TagString: Sushi
@@ -54255,6 +54256,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 6, y: 0, z: 10}
   m_Center: {x: 0, y: 0, z: 5}
+--- !u!114 &8243895586744732279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6485812367159530807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f2ec923149f61e4496ed0133c0366ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stage: {fileID: 0}
+  yashiro: {fileID: 7374492783602182562}
+  inari: {fileID: 2002784888891312665}
+  gameController: {fileID: 0}
 --- !u!1 &6501819476902920943
 GameObject:
   m_ObjectHideFlags: 0
@@ -56430,7 +56447,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6564227176314590363}
   m_Layer: 0
-  m_Name: DefalultStage
+  m_Name: ReDefaultStage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

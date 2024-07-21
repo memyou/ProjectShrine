@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
 
-//プレイヤーにつける
+//プレイヤーにつける→看板につけるに変更
 public class ScoreDirector : MonoBehaviour
 {
-    //プレイヤー
-    public GameObject player;
-    public PlayerController playerController;
-
-    //ポイント計算に使用するゲームオブジェクト
-    public GameObject inari;
-
     //ポイント計算に使用するスクリプト
     public GameController gameController;
 
+    //表示するUI
+    public GameObject[] paper;
+
+    void Start()
+    {
+        gameController = GameObject.Find("GameController").GetComponent<GameController>();
+    }
     void Update()
     {
         Debug.Log($"now point:{gameController.GetPoint()}");
@@ -23,53 +23,13 @@ public class ScoreDirector : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        //paperタグのついたトリガーに侵入したら
-        if (other.CompareTag("Paper"))
+        //トリガーにPlayerが侵入したら
+        if (other.CompareTag("Player"))
         {
-            GameObject paper = other.transform.gameObject;
-            // Debug.Log(paper.name);
-
             //ポイントに応じた看板を表示
-            GameObject info = paper.transform.Find($"{gameController.GetPoint()}nomine").gameObject;
+            GameObject info = paper[gameController.GetPoint()];
+
             info.SetActive(true);
         }
-
-        //sushiタグのついたトリガーに侵入したら
-        if (other.CompareTag("Sushi"))
-        {
-
-            //オブジェクトを取得
-            GameObject yashiro = other.gameObject.transform.parent.gameObject;
-            GameObject stage = yashiro.transform.root.gameObject;
-
-            inari = yashiro.transform.Find("Inari").gameObject;
-
-            Debug.Log(stage.name);
-            // Debug.Log(yashiro.name);
-            // Debug.Log(inari.name);
-
-            //tag=defaultsushiの時：異変なし
-            if (stage.CompareTag("DefaultSushi"))
-            {
-                Debug.Log("異変なし、稲荷" + inari.activeSelf);
-                //trueならポイントリセット
-                if (inari.activeSelf) { gameController.ResetPoint(); }
-                //falseなら加算
-                if (!inari.activeSelf) { gameController.AddPoint(); }
-            }
-
-            //tag=otherSushiの時：異変あり
-            if (stage.CompareTag("OtherSushi"))
-            {
-                Debug.Log("異変あり、稲荷" + inari.activeSelf);
-                //trueならポイント加算
-                if (inari.activeSelf) { gameController.AddPoint(); }
-                //falseならリセット
-                if (!inari.activeSelf) { gameController.ResetPoint(); }
-            }
-
-
-        }
-
     }
 }

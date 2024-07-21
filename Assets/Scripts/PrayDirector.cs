@@ -24,22 +24,6 @@ public class PrayDirector : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    void Update()
-    {
-        //一度だけお供えできる、お供え取り消しは受け付けない
-        if (!isPray)
-        {
-            //侵入中にEキーで稲荷ずしお供え
-            if (isEnter && Input.GetKey(KeyCode.E))
-            {
-                // Debug.Log("お祈りした");
-                isPray = true;
-                inari.SetActive(true);
-                audioSource.Play();
-                prayUI.SetActive(false);
-            }
-        }
-    }
     void OnTriggerEnter(Collider other)
     {   //player侵入中はUI表示
         if (other.CompareTag("Player"))
@@ -50,7 +34,30 @@ public class PrayDirector : MonoBehaviour
         }
     }
 
-    void OnTriggerExit(Collider other) { isEnter = false; }
+    void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            if (!isPray)
+            {
+                //侵入中にEキーで稲荷ずしお供え
+                if (isEnter && Input.GetKey(KeyCode.E))
+                {
+                    // Debug.Log("お祈りした");
+                    isPray = true;
+                    inari.SetActive(true);
+                    audioSource.Play();
+                    prayUI.SetActive(false);
+                }
+            }
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        isEnter = false;
+        prayUI.SetActive(false);
+    }
 
 
 }

@@ -1802,7 +1802,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4, y: 2, z: 0}
+  m_Size: {x: 1, y: 2, z: 0}
   m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &5230912538063057120
 GameObject:
@@ -2072,7 +2072,6 @@ GameObject:
   - component: {fileID: 3630704464422345966}
   - component: {fileID: 2863578733347392286}
   - component: {fileID: 512702290645825253}
-  - component: {fileID: 1820947270224356841}
   m_Layer: 8
   m_Name: Player_human
   m_TagString: Player
@@ -2264,22 +2263,6 @@ MonoBehaviour:
   runSpeed: 4
   walkSE: {fileID: 8300000, guid: cb2008c3fb9cc5640a12c4f8548e571b, type: 3}
   runSE: {fileID: 8300000, guid: 7e528e3607e95ef49bab58b50898568e, type: 3}
---- !u!114 &1820947270224356841
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6613123498978333306}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bf9d6d3a4c68954099b55ded5950760, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 6613123498978333306}
-  playerController: {fileID: 512702290645825253}
-  inari: {fileID: 0}
-  gameController: {fileID: 0}
 --- !u!1 &6859977915484691817
 GameObject:
   m_ObjectHideFlags: 0

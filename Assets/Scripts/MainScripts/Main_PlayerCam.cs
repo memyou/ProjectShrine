@@ -13,6 +13,9 @@ public class Main_PlayerCam : MonoBehaviour
     float xRotation;
     float yRotation;
 
+    public PlayerController playerController;
+    public StageGenerator stageGenerator;
+
     void FixedUpdate()
     {
         LookAround();
@@ -41,9 +44,20 @@ public class Main_PlayerCam : MonoBehaviour
         //y方向のみ視点に上限
         xRotation = Mathf.Clamp(xRotation, -60, 60);
 
-        //カメラとプレイヤーの向きを動かす
-        CamHolder.rotation = Quaternion.Euler(xRotation, yRotation, 0);
-        orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+        if (playerController.GetIsLookBack() && stageGenerator.GetIsWarp())
+        {
+            yRotation = 0;
+            xRotation = 0;
+            //カメラとプレイヤーの向きを動かす
+            CamHolder.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+            orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+        }
+        else
+        {
+            //カメラとプレイヤーの向きを動かす
+            CamHolder.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+            orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+        }
 
     }
 

@@ -24,8 +24,13 @@ public class GameController : MonoBehaviour
     //ポーズ画面用UI
     public GameObject pauseUI;
 
+    //フェード
+    public FadeController fade;
+
     void Start()
     {
+        fade.DoFadeOut();
+
         playerController = player.GetComponent<PlayerController>();
         point = 0;
 
@@ -50,8 +55,12 @@ public class GameController : MonoBehaviour
     void TurnToEnd()
     {
         //黒フェードして遷移
-        Initiate.Fade("Ending-T", Color.black, 1.0f);
+        // Initiate.Fade("Ending-T", Color.black, 1.0f);
+
+        fade.DoFadeIn("Ending-T");
     }
+
+
 
     public void AddPoint()
     {

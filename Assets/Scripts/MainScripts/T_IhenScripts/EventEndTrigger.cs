@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class EventEndTrigger : MonoBehaviour
 {
-    public GameObject ihen;
+    public GameObject[] ihen;
 
     void OnTriggerEnter(Collider other)
     {
-        ihen.SetActive(false);
+        if (other.CompareTag("Player"))
+        {
+            for (int i = 0; i < ihen.Length; i++)
+            {
+                ihen[i].SetActive(false);
+            }
+        }
     }
 }

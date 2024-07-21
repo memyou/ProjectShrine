@@ -2,6 +2,8 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
+using UnityEditor;
 
 
 public class TitleController : MonoBehaviour
@@ -15,9 +17,15 @@ public class TitleController : MonoBehaviour
     //タイトル背景画面
     public GameObject titleImg;
 
-    //シーン遷移前のフェードアウト用パネル
-    public GameObject fadePanel;
+    // //シーン遷移前のフェードアウト用パネル
+    // public GameObject fadePanel;
 
+    //フェードアウト
+    public FadeController fade;
+
+    //Audio
+    AudioSource audioSource;
+    public AudioClip suzu;
 
     //遷移用bool
     bool isClicked;
@@ -25,8 +33,9 @@ public class TitleController : MonoBehaviour
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+
         infoText.SetActive(false);
-        fadePanel.SetActive(false);
     }
 
     void Update()
@@ -36,6 +45,7 @@ public class TitleController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 toGameScene = true;
+                isClicked = false;
             }
         }
     }
@@ -44,32 +54,51 @@ public class TitleController : MonoBehaviour
     {
         isClicked = true;
 
-        StartCoroutine(GameStart());
+        // StartCoroutine(GameStart());
         //SceneManager.LoadScene("Main");
+
+        StartCoroutine(ToGame());
     }
 
-    IEnumerator GameStart()
+    // IEnumerator GameStart()
+    // {
+    //     //ボタンを押されたら
+    //     ShowManu();
+
+    //     //toGameScene=true==trueでシーン遷移
+    //     yield return new WaitUntil(() => toGameScene == true);
+
+    //     //フェードインする
+    //     fadePanel.SetActive(true);
+    //     fadePanel.GetComponent<Image>().DOFade(1.0f, 1.0f);
+
+    //     yield return new WaitForSeconds(1.0f);
+
+    //     Initiate.Fade("Main", Color.black, 1.0f);
+
+    //     yield break;
+    // }
+
+    void ShowManu()
     {
-        //ボタンを押されたら
         //titleMenuを非活性
         titleMenu.SetActive(false);
         //titleImgをA5A5A5に
         titleImg.GetComponent<Image>().color = new Color(165f / 255f, 165f / 255f, 165f / 255f, 255f / 255f);
         //infoText表示
         infoText.SetActive(true);
+    }
 
-        //toGameScene=true==trueでシーン遷移
+    IEnumerator ToGame()
+    {
+        ShowManu();
+
         yield return new WaitUntil(() => toGameScene == true);
 
-        //フェードインする
-        fadePanel.SetActive(true);
-        fadePanel.GetComponent<Image>().DOFade(1.0f, 1.0f);
+        audioSource.PlayOneShot(suzu);
 
-        yield return new WaitForSeconds(1.0f);
-
-        Initiate.Fade("Main", Color.black, 1.0f);
+        fade.DoFadeIn("Main");
 
         yield break;
     }
-
 }
