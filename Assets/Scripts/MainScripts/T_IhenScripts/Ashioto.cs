@@ -26,12 +26,6 @@ public class Ashioto : MonoBehaviour
     //足音
     public AudioSource se;
 
-    // void Start()
-    // {
-    //     targetRb = target.GetComponent<Rigidbody>();
-    //     se = GetComponent<AudioSource>();
-    // }
-
     void FixedUpdate()
     {
         //対象が移動しているかどうかをチェックする

@@ -26,7 +26,7 @@ public class StageGenerator : MonoBehaviour
     //ひとつ前に生成したステージのインデックス
     int beforeStage;
     //現在生成したステージのインデックス
-    int nextStage;
+    // int nextStage;
 
     //ワープ先のtransform
     Transform restartPos;
@@ -81,6 +81,8 @@ public class StageGenerator : MonoBehaviour
 
         //音
         audioSource.Play();
+
+        yield return new WaitForSeconds(0.5f);
 
         GameObject stage = stages.transform.GetChild(2).gameObject;
         GameObject mainStage = stage.transform.GetChild(0).gameObject;
@@ -165,7 +167,7 @@ public class StageGenerator : MonoBehaviour
         else
         {
             //nextStageにまず生成した数値を格納
-            nextStage = Random.Range(1, stageChips.Length);
+            int nextStage = Random.Range(1, stageChips.Length);
 
             //nextStageとbeforeStageを比較
             if (beforeStage != nextStage)

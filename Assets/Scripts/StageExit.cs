@@ -14,6 +14,9 @@ public class StageExit : MonoBehaviour
 
     public GameController gameController;
 
+    //ステージを進んできているか
+    public StageExitArea stageExitArea;
+
     //判定範囲内に入ったか
     bool isEnter;
 
@@ -31,33 +34,35 @@ public class StageExit : MonoBehaviour
         //プレイヤー侵入時
         if (other.CompareTag("Player"))
         {
-            //isEnter=falseの時に一度だけ判定する
-            if (!isEnter)
+            //ステージを実際に進んできていたら
+            if (stageExitArea.GetIsEnter())
             {
-                if (stage.CompareTag("DefaultSushi"))
+                //isEnter=falseの時に一度だけ判定する
+                if (!isEnter)
                 {
-                    Debug.Log("異変なし、稲荷" + inari.activeSelf);
-                    //trueならポイントリセット
-                    if (inari.activeSelf) { gameController.ResetPoint(); }
-                    //falseなら加算
-                    if (!inari.activeSelf) { gameController.AddPoint(); }
-                }
+                    if (stage.CompareTag("DefaultSushi"))
+                    {
+                        Debug.Log("異変なし、稲荷" + inari.activeSelf);
+                        //trueならポイントリセット
+                        if (inari.activeSelf) { gameController.ResetPoint(); }
+                        //falseなら加算
+                        if (!inari.activeSelf) { gameController.AddPoint(); }
+                    }
 
-                //tag=otherSushiの時：異変あり
-                if (stage.CompareTag("OtherSushi"))
-                {
-                    Debug.Log("異変あり、稲荷" + inari.activeSelf);
-                    //trueならポイント加算
-                    if (inari.activeSelf) { gameController.AddPoint(); }
-                    //falseならリセット
-                    if (!inari.activeSelf) { gameController.ResetPoint(); }
-                }
+                    //tag=otherSushiの時：異変あり
+                    if (stage.CompareTag("OtherSushi"))
+                    {
+                        Debug.Log("異変あり、稲荷" + inari.activeSelf);
+                        //trueならポイント加算
+                        if (inari.activeSelf) { gameController.AddPoint(); }
+                        //falseならリセット
+                        if (!inari.activeSelf) { gameController.ResetPoint(); }
+                    }
 
-                //isEnter=trueに
-                isEnter = true;
+                    //isEnter=trueに
+                    isEnter = true;
+                }
             }
-
         }
-
     }
 }

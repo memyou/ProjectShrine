@@ -62,16 +62,23 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        CheckRay();
+        if (!isLookBack)
+        {
+            CheckRay();
 
-        KeyCheck();
-        AnimCheck();
-        PlayAudio();
+            KeyCheck();
+            AnimCheck();
+            PlayAudio();
+        }
     }
 
     void FixedUpdate()
     {
-        MovePlayer();
+        if (!isLookBack)
+        {
+            MovePlayer();
+        }
+
     }
 
     //プレイヤー移動処理
@@ -149,6 +156,9 @@ public class PlayerController : MonoBehaviour
 
     void PlayAudio()
     {
+        //state=idleの時は足音停止
+        if (state == MoveState.idle) { audioSource.Stop(); }
+
         //何らかのキーを押下した時、stateに応じて足音を鳴らす
         if (Input.anyKeyDown)
         {
@@ -166,10 +176,6 @@ public class PlayerController : MonoBehaviour
         }
 
         if (Input.GetKeyUp(KeyCode.Space)) { audioSource.Stop(); audioSource.PlayOneShot(walkSE); }
-
-        //state=idleの時は足音停止
-        if (state == MoveState.idle) { audioSource.Stop(); }
-
     }
 
     //アニメーション遷移
