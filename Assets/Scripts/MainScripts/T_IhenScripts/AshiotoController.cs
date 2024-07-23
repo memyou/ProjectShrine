@@ -25,11 +25,11 @@ public class AshiotoController : MonoBehaviour
 
         //ashioto.targetにプレイヤー代入
         ashioto.target = other.gameObject.transform.parent.gameObject;
+
         //ashioto.targetRbにプレイヤーの親rigidbody代入
         ashioto.targetRb = other.gameObject.transform.parent.GetComponent<Rigidbody>();
+
         //ashioto.seにashiotoのAudioSource代入
         ashioto.se = gO_Ashioto.GetComponent<AudioSource>();
-        // //targetIsMoveにtrue代入
-        // ashioto.targetIsMove = true;
     }
 }

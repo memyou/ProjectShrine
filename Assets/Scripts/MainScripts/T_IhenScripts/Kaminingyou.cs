@@ -6,24 +6,17 @@ using UnityEngine.UIElements;
 
 /*
 プレイヤーに処理を追加しないで実装できるようにする
-プレイヤーがキャスト内に侵入したら、UIではがす指示表示する
+プレイヤーがキャスト内に侵入したら、UIではがす指示表示する:できず
 はがされたらオブジェクト破棄してはがした数カウント
 */
 
 public class Kaminingyou : MonoBehaviour, IInteractable
 {
-    // public TextMeshProUGUI peelOffText;
-
     //キャスト用情報
     public float radius; //キャスト半径
     public LayerMask targetLayer; //キャストが取得するレイヤー：player
 
-    Collider[] result = new Collider[1]; //取得するコライダー,プレイヤーのみなので１でOK
-
-    private void Start()
-    {
-
-    }
+    Collider[] result = new Collider[1]; //取得するコライダー,プレイヤーのみなので１
 
     private void Update()
     {
@@ -40,15 +33,7 @@ public class Kaminingyou : MonoBehaviour, IInteractable
                 // Debug.Log("player離脱中");
                 break;
         }
-
     }
-
-    // //円の可視化
-    // private void OnDrawGizmos()
-    // {
-    //     Gizmos.color = Color.red;
-    //     Gizmos.DrawWireSphere(transform.position, radius);
-    // }
 
     public void Interact()
     {
@@ -59,6 +44,5 @@ public class Kaminingyou : MonoBehaviour, IInteractable
             KaminingyouDirector.count--;
             Destroy(gameObject);
         }
-
     }
 }

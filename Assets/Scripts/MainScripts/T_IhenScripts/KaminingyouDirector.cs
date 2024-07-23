@@ -46,6 +46,7 @@ public class KaminingyouDirector : MonoBehaviour
 
         audioSource = GetComponent<AudioSource>();
     }
+
     private void Update()
     {
         //挑戦初回
@@ -59,7 +60,6 @@ public class KaminingyouDirector : MonoBehaviour
                 ChalllengeChecked();
             }
         }
-
     }
 
     private void OnTriggerEnter(Collider other)
@@ -131,7 +131,6 @@ public class KaminingyouDirector : MonoBehaviour
 
             StartCoroutine(ResultCoroutine());
         }
-
     }
 
     IEnumerator ResultCoroutine()
@@ -145,5 +144,4 @@ public class KaminingyouDirector : MonoBehaviour
         //コルーチン停止
         yield break;
     }
-
 }

@@ -20,9 +20,6 @@ public class Ashioto : MonoBehaviour
     //対象の挙動
     public bool targetIsMove;
 
-    //動いていることを判定
-    int move;
-
     //足音
     public AudioSource se;
 

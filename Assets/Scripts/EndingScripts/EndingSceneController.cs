@@ -44,13 +44,11 @@ public class EndingSceneController : MonoBehaviour
 
     public GameObject ihen;
 
+    //fade
+    public FadeController fade;
+
     private void Awake()
     {
-        // //コンポーネント取得
-        // ending = endingDirector.GetComponent<TimeLineController>();
-        // ending2 = ending2Director.GetComponent<TimeLineController>();
-
-
         //タイムライン活性化
         endingTimeLine.SetActive(true);
 
@@ -72,6 +70,9 @@ public class EndingSceneController : MonoBehaviour
 
     private void Start()
     {
+        //fadeout
+        fade.DoFadeOut();
+
         //マウスポインタ中央固定、不可視化
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;

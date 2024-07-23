@@ -33,11 +33,12 @@ public class EndingEventTrigger : MonoBehaviour
         //タイムライン一時停止
         endingTimeline.Pause();
 
+        //カーソル非固定、可視化
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
+        //分岐パネル活性
         selectEndingCanvas.SetActive(true);
-        // Debug.Log("player接触");
     }
 
     //シグナルで呼び出す

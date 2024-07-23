@@ -37,16 +37,4 @@ public class TimeLineController : MonoBehaviour
         gameObject.SetActive(false);
 
     }
-
-    // //一時停止
-    // public void TimeLinePause()
-    // {
-    //     director.Pause();
-    // }
-
-    // //再生
-    // public void TimeLineRestart()
-    // {
-    //     director.Resume();
-    // }
 }

@@ -30,10 +30,10 @@ public class EndRollController : MonoBehaviour
     float msgBoxSize;
 
     // //画面の縦のサイズ
-    // float screenHeight;
+    float screenHeight;
 
     //キャンバスの縦サイズ
-    float canvasHeight;
+    // float canvasHeight;
 
     //テキストのスクロールスピード
     public float textScrollSpeed = 30f;
@@ -47,10 +47,6 @@ public class EndRollController : MonoBehaviour
     Coroutine endRollTitleCoroutine;
     Coroutine endRollMsgCoroutine;
 
-    //スクロール限界値
-    float titleLimit;
-    float textLimit;
-
     void Awake()
     {
         //ED曲取得
@@ -61,20 +57,26 @@ public class EndRollController : MonoBehaviour
     void Start()
     {
         //画面のサイズを取得
+        //currentResolutionある方がいいのか？ない方がいいのか？
+        screenHeight = Screen.height;
+
         //キャンバスの縦サイズ取得
-        canvasHeight = endRollCanvas.rect.height;
+        // canvasHeight = endRollCanvas.rect.height;
+        // Debug.Log("canvasY" + canvasHeight);
+
+        Debug.Log(screenHeight);
+        // Debug.Break();
 
         //テキストボックスのサイズ取得
         titleBoxSize = endRollTitle.preferredHeight;
         textBoxSize = endRollText.preferredHeight;
         msgBoxSize = endRollMsg.preferredHeight;
 
+        // Debug.Log(textBoxSize);
+        // Debug.Break();
+
         //全テキストボックスの位置を調整
         SetPosition();
-
-        //リミット計算
-        titleLimit = canvasHeight / 2 + titleBoxSize;
-        textLimit = textBoxSize;
 
         //ED再生
         music.Play();
@@ -100,7 +102,8 @@ public class EndRollController : MonoBehaviour
         if (isOutTitle && !isOutText)
         {
             // float limit = textBoxSize + canvasHeight / 2;
-            if (endRollText.rectTransform.anchoredPosition.y >= textLimit)
+            float limit = textBoxSize;
+            if (limit <= endRollText.rectTransform.localPosition.y)
             {
                 //画面上辺中央にきたらfalse
                 isOutText = true;
@@ -117,7 +120,7 @@ public class EndRollController : MonoBehaviour
         if (isOutTitle && isOutText && !isStopMsg)
         {
             //中央で止まる
-            if (endRollMsg.rectTransform.anchoredPosition.y >= 0)
+            if (endRollMsg.rectTransform.localPosition.y >= 0)
             {
                 isStopMsg = true;
             }
@@ -126,7 +129,7 @@ public class EndRollController : MonoBehaviour
 
 
         }
-        if (isOutText && isOutText && isStopMsg)
+        else if (isOutText && isOutText && isStopMsg)
         {
             endRollMsgCoroutine = StartCoroutine(GoToStartScene());
         }
@@ -139,7 +142,7 @@ public class EndRollController : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift) | Input.GetKey(KeyCode.RightShift))
         {
             endRoll.transform.position = new Vector2(endRoll.transform.position.x,
-            endRoll.transform.position.y + textScrollSpeed * 3 * Time.deltaTime);
+                endRoll.transform.position.y + textScrollSpeed * 3 * Time.deltaTime);
         }
         else
         {
@@ -156,7 +159,11 @@ public class EndRollController : MonoBehaviour
         endRollTitle.rectTransform.localPosition = new Vector3(0, center, 0);
 
         //テキストの位置、下辺中央
-        float bottom = canvasHeight / 2;
+        // float bottom = canvasHeight / 2;
+        float bottom = screenHeight / 2;
+        // Debug.Log("画面縦サイズ" + canvasHeight);
+        // Debug.Log("画面の半分" + bottom);
+
 
         endRollText.rectTransform.localPosition = new Vector3(0, -bottom, 0);
 
@@ -175,7 +182,9 @@ public class EndRollController : MonoBehaviour
         keyInfo.enabled = true;
 
         //画面外に出たら
-        if (titleLimit <= endRollTitle.rectTransform.anchoredPosition.y)
+        // float limit = titleBoxSize + canvasHeight / 2;
+        float limit = titleBoxSize + screenHeight / 2;
+        if (limit <= endRollTitle.rectTransform.localPosition.y)
         {
             //フラグをtrue
             isOutTitle = true;
@@ -193,7 +202,7 @@ public class EndRollController : MonoBehaviour
         StopCoroutine(endRollTitleCoroutine);
     }
 
-    //五秒停止後、タイトルシーンへ移行
+    //3秒停止後、タイトルシーンへ移行
     IEnumerator GoToStartScene()
     {
         //3秒停止
