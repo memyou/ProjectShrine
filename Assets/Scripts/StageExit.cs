@@ -20,6 +20,9 @@ public class StageExit : MonoBehaviour
     //判定範囲内に入ったか
     bool isEnter;
 
+    //異変の発見数を管理する
+    HashSet<GameObject> achieveList = new HashSet<GameObject>();
+
     void Start()
     {
         //GameController取得
@@ -54,7 +57,14 @@ public class StageExit : MonoBehaviour
                     {
                         Debug.Log("異変あり、稲荷" + inari.activeSelf);
                         //trueならポイント加算
-                        if (inari.activeSelf) { gameController.AddPoint(); }
+                        if (inari.activeSelf)
+                        {
+                            gameController.AddPoint();
+
+                            //発見し、対応できた異変を格納
+                            achieveList.Add(stage);
+                            int GetAchieve = achieveList.Count;
+                        }
                         //falseならリセット
                         if (!inari.activeSelf) { gameController.ResetPoint(); }
                     }
