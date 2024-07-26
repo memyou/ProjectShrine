@@ -92,6 +92,10 @@ PrefabInstance:
       propertyPath: m_VersionIndex
       value: 10586
       objectReference: {fileID: 0}
+    - target: {fileID: 5403899039992557356, guid: 83ce122904bc4db4c9bc56fa237f3b0f, type: 3}
+      propertyPath: m_Size.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5854011036232705560, guid: 83ce122904bc4db4c9bc56fa237f3b0f, type: 3}
       propertyPath: m_Name
       value: DefaultMainStage

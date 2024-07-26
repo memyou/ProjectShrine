@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.NetworkInformation;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -8,20 +9,17 @@ using UnityEngine;
 public class StageExit : MonoBehaviour
 {
     //スコア判定に使用するオブジェクト
-    public GameObject stage;
-    public GameObject yashiro;
-    public GameObject inari;
+    [SerializeField] GameObject stage;
+    [SerializeField] GameObject yashiro;
+    [SerializeField] GameObject inari;
 
-    public GameController gameController;
+    [SerializeField] GameController gameController;
 
     //ステージを進んできているか
-    public StageExitArea stageExitArea;
+    [SerializeField] StageExitArea stageExitArea;
 
     //判定範囲内に入ったか
     bool isEnter;
-
-    //異変の発見数を管理する
-    HashSet<GameObject> achieveList = new HashSet<GameObject>();
 
     void Start()
     {
@@ -32,17 +30,27 @@ public class StageExit : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log(stage);
+        // Debug.Log(stage);
 
         //プレイヤー侵入時
         if (other.CompareTag("Player"))
         {
+            //ステージを逆走していたら
+            if (!stageExitArea.GetIsEnter())
+            {
+                //侵入フラグtrue
+                isEnter = true;
+            }
+
             //ステージを実際に進んできていたら
-            if (stageExitArea.GetIsEnter())
+            else
             {
                 //isEnter=falseの時に一度だけ判定する
                 if (!isEnter)
                 {
+                    //侵入フラグtrue
+                    isEnter = true;
+
                     if (stage.CompareTag("DefaultSushi"))
                     {
                         Debug.Log("異変なし、稲荷" + inari.activeSelf);
@@ -62,15 +70,14 @@ public class StageExit : MonoBehaviour
                             gameController.AddPoint();
 
                             //発見し、対応できた異変を格納
-                            achieveList.Add(stage);
-                            int GetAchieve = achieveList.Count;
+                            gameController.GetAchieveList().Add(stage);
+                            gameController.SetAchive(gameController.GetAchieveList().Count());
+
+                            // Debug.Log(gameController.GetAchieveList().Count());
                         }
                         //falseならリセット
                         if (!inari.activeSelf) { gameController.ResetPoint(); }
                     }
-
-                    //isEnter=trueに
-                    isEnter = true;
                 }
             }
         }

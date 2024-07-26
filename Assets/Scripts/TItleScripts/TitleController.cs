@@ -9,23 +9,23 @@ using UnityEditor;
 public class TitleController : MonoBehaviour
 {
     //タイトル画面
-    public GameObject titleMenu;
+    [SerializeField] GameObject titleMenu;
 
     // //遷移前表示するUI
-    public GameObject infoText;
+    [SerializeField] GameObject infoText;
 
     //タイトル背景画面
-    public GameObject titleImg;
+    [SerializeField] GameObject titleImg;
 
     // //シーン遷移前のフェードアウト用パネル
     // public GameObject fadePanel;
 
     //フェードアウト
-    public FadeController fade;
+    [SerializeField] FadeController fade;
 
     //Audio
     AudioSource audioSource;
-    public AudioClip suzu;
+    [SerializeField] AudioClip suzu;
 
     //遷移用bool
     bool isClicked;

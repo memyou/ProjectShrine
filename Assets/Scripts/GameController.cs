@@ -7,10 +7,10 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     //フィールド生成用スクリプト
-    public StageGenerator stageGenerator;
+    [SerializeField] StageGenerator stageGenerator;
 
     //プレイヤーとそのスクリプト
-    public GameObject player;
+    [SerializeField] GameObject player;
     PlayerController playerController;
 
     //進行状況用変数
@@ -19,16 +19,25 @@ public class GameController : MonoBehaviour
     //ノルマ数
     const int MAX_STAGE = 5;
 
-    //ポーズ画面を開いているかどうか
+    //ヘルプ画面を開いているかどうか
     bool isPause;
-    //ポーズ画面用UI
-    public GameObject pauseUI;
+    //ヘルプ画面用UI
+    [SerializeField] GameObject pauseUI;
 
     //フェード
-    public FadeController fade;
+    [SerializeField] FadeController fade;
+
+
+    //異変の発見数を管理する
+    HashSet<GameObject> achieveList = new HashSet<GameObject>();
+    public int getAchieve;
 
     void Start()
     {
+        //発見した異変の格納
+        PlayerPrefs.SetInt("SCORE", getAchieve);
+        PlayerPrefs.Save();
+
         fade.DoFadeOut();
 
         playerController = player.GetComponent<PlayerController>();
@@ -40,7 +49,7 @@ public class GameController : MonoBehaviour
     void Update()
     {
         //Pauseのチェック
-        CheckedPause();
+        CheckedHelp();
 
         //pointがMAX_STAGEと同数であれば
         if (point == MAX_STAGE)
@@ -60,11 +69,9 @@ public class GameController : MonoBehaviour
         fade.DoFadeIn("Ending-T");
     }
 
-
-
     public void AddPoint()
     {
-        point += 1;
+        point++;
     }
 
     public void ResetPoint()
@@ -75,32 +82,22 @@ public class GameController : MonoBehaviour
     //ポイント参照
     public int GetPoint() { return point; }
 
-    //ポーズ画面を表示する
-    void CheckedPause()
+    //ヘルプ画面を表示する
+    void CheckedHelp()
     {
-        //isPause=falseの時にH_keyでisPause=true
-        if (!isPause)
+        if (Input.GetKeyDown(KeyCode.H))
         {
-            if (Input.GetKeyDown(KeyCode.H))
+            if (!isPause)
             {
-                Debug.Log("表示H押した");
-                //H_key押したら
                 isPause = true;
-
-                StartCoroutine(Pause());
+                StartCoroutine(Help());
             }
-        }
-        else
-        {//isPause=trueの時にH_keyでisPause=false
-            if (Input.GetKeyDown(KeyCode.H))
-            {
-                isPause = false;
-            }
+            else { isPause = false; }
         }
     }
 
-    //ポーズ
-    IEnumerator Pause()
+    //ヘルプ
+    IEnumerator Help()
     {
         // H_keyが押された時の処理
         //pauseUIを活性化
@@ -115,4 +112,8 @@ public class GameController : MonoBehaviour
         // //コルーチン終了
         yield break;
     }
+
+    //hashSet
+    public HashSet<GameObject> GetAchieveList() { return achieveList; }
+    public void SetAchive(int count) { PlayerPrefs.SetInt("SCORE", count); }
 }

@@ -30,7 +30,6 @@ public class Ashioto : MonoBehaviour
 
         //SE、対象が移動していたら鳴らす
         SePlay();
-
     }
 
     //歩いていたら足音を鳴らす ※pitch調節しているだけ

@@ -1,27 +1,15 @@
-using System;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-
 public class FadeController : MonoBehaviour
 {
     //フェードに使用するパネル
-    public Image fadePanel;
+    [SerializeField] Image fadePanel;
 
     //フェード時間
-    public float fadeDuration = 1.0f;
-
-    //経過時間
-    // float time;
-
-    // //フェードの状況
-    // bool isFade;
-
-    //フェードで使用する
-    // Color startColor, endColor;
+    [SerializeField] float fadeDuration = 1.0f;
 
     //パネル設定の色を使用するFadeIn
     public void DoFadeIn()
@@ -35,44 +23,11 @@ public class FadeController : MonoBehaviour
         StartCoroutine(FadeIn(nextSceneName));
     }
 
-    //色を黒に指定したfadeOut
+    //パネル設定の色を使用するfadeOut
     public void DoFadeOut()
     {
         StartCoroutine(FadeOut());
     }
-
-    //任意の色を渡すFadeIn,FadeOut
-    public void DoFade(Color startColor, Color endColor)
-    {
-        StartCoroutine(Fade(startColor, endColor));
-    }
-
-    //任意の色を渡してシーン遷移するFadeIn
-    public void DoFadeIn(Color startColor, Color endColor, string nextSceneName)
-    {
-        StartCoroutine(Fade(startColor, endColor, nextSceneName));
-    }
-
-    // //連続してfadeInOutする
-    // public void DoFadeInToOut()
-    // {
-    //     StartCoroutine(FadeInToOut());
-    // }
-
-    // IEnumerator FadeInToOut()
-    // {
-    //     startColor = fadePanel.color;
-    //     endColor = new Color(startColor.r, startColor.g, startColor.b, 1.0f);
-
-    //     yield return StartCoroutine(Fade(startColor, endColor));
-
-    //     yield return StartCoroutine(Fade(endColor, startColor));
-
-    //     fadePanel.enabled = false;
-
-    //     yield break;
-    // }
-
 
     //fadeIn
     public IEnumerator FadeIn()
@@ -85,6 +40,8 @@ public class FadeController : MonoBehaviour
         yield return StartCoroutine(Fade(startColor, endColor));
 
         fadePanel.enabled = false;
+
+        yield break;
     }
 
     public IEnumerator FadeIn(string nextSceneName)
@@ -105,9 +62,9 @@ public class FadeController : MonoBehaviour
     public IEnumerator FadeOut()
     {
         //フェード開始時の色
-        Color startColor = new Color(0f, 0f, 0f, 1f);
+        Color startColor = new Color(0.0f, 0.0f, 0.0f, 1.0f);
         //終了時の色
-        Color endColor = new Color(startColor.r, startColor.g, startColor.b, 0f);
+        Color endColor = new Color(startColor.r, startColor.g, startColor.b, 0.0f);
 
         yield return StartCoroutine(Fade(startColor, endColor));
 

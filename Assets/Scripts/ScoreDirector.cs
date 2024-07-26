@@ -7,19 +7,19 @@ using UnityEngine;
 public class ScoreDirector : MonoBehaviour
 {
     //ポイント計算に使用するスクリプト
-    public GameController gameController;
+    [SerializeField] GameController gameController;
 
     //表示するUI
-    public GameObject[] paper;
+    [SerializeField] GameObject[] paper;
 
     void Start()
     {
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
     }
-    void Update()
-    {
-        Debug.Log($"now point:{gameController.GetPoint()}");
-    }
+    // void Update()
+    // {
+    //     Debug.Log($"now point:{gameController.GetPoint()}");
+    // }
 
     void OnTriggerEnter(Collider other)
     {

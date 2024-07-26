@@ -93,7 +93,6 @@ public class PlayerController : MonoBehaviour
                 Move(runSpeed);
                 break;
         }
-
     }
 
     //実際の移動処理
@@ -149,7 +148,7 @@ public class PlayerController : MonoBehaviour
         //振り返っていないかどうかを判断する
         if (Physics.Raycast(checkLookBack_ray, 2f, lookbackLayer))
         {
-            Debug.Log("振り返った");
+            // Debug.Log("振り返った");
             isLookBack = true;
         }
     }

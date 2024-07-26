@@ -11,17 +11,17 @@ public class StageGenerator : MonoBehaviour
     int currentChipIndex; //今作成されている一番先頭のチップの最大値
 
 
-    public Transform character; //プレイヤーの位置
-    public GameObject[] stageChips; //ステージチップの種類
-    public int startChipIndex;
-    public int preInstantiate; //前方にいくつつくっておくか
-    public List<GameObject> generatedStageList = new List<GameObject>(); //出現させたステージチップの住所をリスト管理
+    [SerializeField] Transform character; //プレイヤーの位置
+    [SerializeField] GameObject[] stageChips; //ステージチップの種類
+    [SerializeField] int startChipIndex;
+    [SerializeField] int preInstantiate; //前方にいくつつくっておくか
+    [SerializeField] List<GameObject> generatedStageList = new List<GameObject>(); //出現させたステージチップの住所をリスト管理
 
     //ステージ用親オブジェクト
-    public GameObject stages;
+    [SerializeField] GameObject stages;
 
     //プレイヤーのスクリプト：振り返り状況を取得する
-    public PlayerController playerController;
+    [SerializeField] PlayerController playerController;
 
     //ひとつ前に生成したステージのインデックス
     int beforeStage;
@@ -33,10 +33,10 @@ public class StageGenerator : MonoBehaviour
 
     bool isWarp;
 
-    public GameController gameController;
+    [SerializeField] GameController gameController;
 
     //fade
-    public FadeController fade;
+    [SerializeField] FadeController fade;
 
     //音
     AudioSource audioSource;
@@ -49,7 +49,6 @@ public class StageGenerator : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         //現在のステージチップのインデックス
@@ -89,7 +88,7 @@ public class StageGenerator : MonoBehaviour
         restartPos = mainStage.transform.GetChild(0).gameObject.transform;
 
         //fadein
-        yield return fade.StartCoroutine("FadeIn");
+        yield return StartCoroutine(fade.FadeIn());
 
         //isWarp=trueで視線再設定用のフラグをonに
         isWarp = true;
@@ -97,7 +96,7 @@ public class StageGenerator : MonoBehaviour
         //プレイヤーの位置をrestartPosにワープ
         character.position = restartPos.position;
 
-        yield return fade.StartCoroutine("FadeOut");
+        yield return StartCoroutine(fade.FadeOut());
 
         isWarp = false;
 
@@ -161,7 +160,7 @@ public class StageGenerator : MonoBehaviour
         if (beforeStage != 0 && rand == 0)
         {
             beforeStage = rand;
-            return rand;
+            return beforeStage;
         }
         //0以外なら異変有り
         else
@@ -172,6 +171,7 @@ public class StageGenerator : MonoBehaviour
             //nextStageとbeforeStageを比較
             if (beforeStage != nextStage)
             {
+                Debug.Log("前" + beforeStage);
                 //違うならbeforeStageにnextStageを格納する
                 beforeStage = nextStage;
             }
@@ -180,10 +180,10 @@ public class StageGenerator : MonoBehaviour
                 //同じならやり直し
                 NextStage();
             }
-
-            return nextStage;
+            Debug.Log(":次" + beforeStage);
+            // return nextStage;
+            return beforeStage;
         }
-
     }
 
     //一番古いステージを削除

@@ -3059,6 +3059,7 @@ MonoBehaviour:
   player: {fileID: 6613123499306366552}
   pauseUI: {fileID: 1431640921}
   fade: {fileID: 1892180660}
+  getAchieve: 0
 --- !u!1 &1060513348
 GameObject:
   m_ObjectHideFlags: 0
@@ -4742,6 +4743,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8617642720274095029, guid: 4bd83f16133f15a42be9f6d2e632b380, type: 3}
       propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8617642720274095029, guid: 4bd83f16133f15a42be9f6d2e632b380, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8617642720274095029, guid: 4bd83f16133f15a42be9f6d2e632b380, type: 3}
