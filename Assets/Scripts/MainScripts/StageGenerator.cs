@@ -39,14 +39,14 @@ public class StageGenerator : MonoBehaviour
     [SerializeField] FadeController fade;
 
     //音
-    AudioSource audioSource;
+    [SerializeField] AudioSource audioSource;
 
     void Start()
     {
         currentChipIndex = startChipIndex - 1;
         UpdateStage(preInstantiate);
 
-        audioSource = GetComponent<AudioSource>();
+        // audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -96,6 +96,7 @@ public class StageGenerator : MonoBehaviour
         //プレイヤーの位置をrestartPosにワープ
         character.position = restartPos.position;
 
+        //fadeout
         yield return StartCoroutine(fade.FadeOut());
 
         isWarp = false;

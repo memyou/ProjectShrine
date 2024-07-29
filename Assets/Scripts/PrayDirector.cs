@@ -6,10 +6,10 @@ using UnityEngine;
 public class PrayDirector : MonoBehaviour
 {
     //お供えに必要なもの
-    public GameObject inari;
-    public GameObject prayUI;
+    [SerializeField] GameObject inari;
+    [SerializeField] GameObject prayUI;
 
-    AudioSource audioSource;
+    [SerializeField] AudioSource audioSource;
 
     //範囲内にいるかどうか
     bool isEnter;
@@ -21,7 +21,7 @@ public class PrayDirector : MonoBehaviour
     void Start()
     {
         prayUI.SetActive(false);
-        audioSource = GetComponent<AudioSource>();
+        // audioSource = GetComponent<AudioSource>();
     }
 
     void OnTriggerEnter(Collider other)
@@ -59,5 +59,9 @@ public class PrayDirector : MonoBehaviour
         prayUI.SetActive(false);
     }
 
-
+    void OnDestroy()
+    {
+        inari = prayUI = null;
+        audioSource = null;
+    }
 }

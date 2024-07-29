@@ -6,13 +6,10 @@ using UnityEngine;
 public class StageInteract : MonoBehaviour
 {
     //ゲームオブジェクト
-    public GameObject ruleUI;
-    public GameObject ruleImage;
-    public GameObject remy;
-    public GameObject inari;
-
-    //コンポーネント
-    AudioSource audioSource;
+    [SerializeField] GameObject ruleUI;
+    [SerializeField] GameObject ruleImage;
+    [SerializeField] GameObject remy;
+    [SerializeField] GameObject inari;
 
     //イメージ表示状態
     bool isShowImage;
@@ -22,7 +19,6 @@ public class StageInteract : MonoBehaviour
 
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
         ruleUI.SetActive(false);
         ruleImage.SetActive(false);
         inari.SetActive(false);
@@ -94,5 +90,10 @@ public class StageInteract : MonoBehaviour
             ruleUI.SetActive(false);
             ruleImage.SetActive(false);
         }
+    }
+
+    void OnDestroy()
+    {
+        ruleUI = ruleImage = remy = inari = null;
     }
 }

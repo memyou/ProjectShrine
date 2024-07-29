@@ -9,11 +9,11 @@ using UnityEngine;
 */
 public class KomachiController : MonoBehaviour
 {
-    public GameObject player;
-    public GameObject orientation;
-    public LayerMask komachi;
+    [SerializeField] GameObject player;
+    [SerializeField] GameObject orientation;
+    [SerializeField] LayerMask komachi;
 
-    public GameObject omen;
+    [SerializeField] GameObject omen;
 
     bool haveOrientation;
     bool showOmen;
@@ -58,5 +58,10 @@ public class KomachiController : MonoBehaviour
         omen.SetActive(false);
 
         yield break;
+    }
+
+    void OnDestroy()
+    {
+        player = orientation = omen = null;
     }
 }

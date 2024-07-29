@@ -5,10 +5,10 @@ using UnityEngine;
 public class AshiotoController : MonoBehaviour
 {
     //足音
-    public GameObject gO_Ashioto;
+    [SerializeField] GameObject gO_Ashioto;
 
     //通過した時にプレイヤーを別スクリプトに格納
-    Ashioto ashioto;
+    [SerializeField] Ashioto ashioto;
 
     void Start()
     {
@@ -24,12 +24,18 @@ public class AshiotoController : MonoBehaviour
         ashioto = gO_Ashioto.GetComponent<Ashioto>();
 
         //ashioto.targetにプレイヤー代入
-        ashioto.target = other.gameObject.transform.parent.gameObject;
+        ashioto.SetTarget(other.gameObject.transform.parent.gameObject);
 
         //ashioto.targetRbにプレイヤーの親rigidbody代入
-        ashioto.targetRb = other.gameObject.transform.parent.GetComponent<Rigidbody>();
+        ashioto.SetTargetRb(other.gameObject.transform.parent.GetComponent<Rigidbody>());
 
         //ashioto.seにashiotoのAudioSource代入
-        ashioto.se = gO_Ashioto.GetComponent<AudioSource>();
+        ashioto.SetSe(gO_Ashioto.GetComponent<AudioSource>());
+    }
+
+    void OnDestroy()
+    {
+        gO_Ashioto = null;
+        ashioto = null;
     }
 }

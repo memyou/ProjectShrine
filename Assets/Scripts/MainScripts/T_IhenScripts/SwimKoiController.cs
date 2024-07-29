@@ -6,8 +6,8 @@ using UnityEngine.Playables;
 public class SwimKoiController : MonoBehaviour
 {
     //タイムライン
-    public GameObject swimKoi;
-    public PlayableDirector swimTimeLine;
+    [SerializeField] GameObject swimKoi;
+    // [SerializeField] PlayableDirector swimTimeLine;
 
     private void Start()
     {
@@ -19,5 +19,11 @@ public class SwimKoiController : MonoBehaviour
     {
         //タイムライン活性化と再生
         swimKoi.SetActive(true);
+    }
+
+    void OnDestroy()
+    {
+        swimKoi = null;
+        // swimTimeLine = null;
     }
 }

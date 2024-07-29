@@ -4,14 +4,8 @@ using UnityEngine;
 
 public class Main_CameraPos : MonoBehaviour
 {
-    public Transform cameraPos;
-    // Start is called before the first frame update
-    void Start()
-    {
+    [SerializeField] Transform cameraPos;
 
-    }
-
-    // Update is called once per frame
     void Update()
     {
         transform.position = cameraPos.position;

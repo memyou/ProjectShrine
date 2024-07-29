@@ -13,10 +13,15 @@ using UnityEngine.UIElements;
 public class Kaminingyou : MonoBehaviour, IInteractable
 {
     //キャスト用情報
-    public float radius; //キャスト半径
-    public LayerMask targetLayer; //キャストが取得するレイヤー：player
+    [SerializeField] float radius; //キャスト半径
+    [SerializeField] LayerMask targetLayer; //キャストが取得するレイヤー：player
 
     Collider[] result = new Collider[1]; //取得するコライダー,プレイヤーのみなので１
+
+    // [SerializeField] AudioSource audioSource;
+    [SerializeField] KaminingyouDirector kaminingyouDirector;
+
+    // void Start() { }
 
     private void Update()
     {
@@ -41,8 +46,19 @@ public class Kaminingyou : MonoBehaviour, IInteractable
         if (Input.GetKeyDown(KeyCode.F))
         {
             Debug.Log("はがした");
-            KaminingyouDirector.count--;
-            Destroy(gameObject);
+            kaminingyouDirector.Kami_peelOff();
+            // Destroy(gameObject);
+            // audioSource.Play();
+            this.gameObject.SetActive(false);
         }
+    }
+
+    void OnDestroy()
+    {
+        // audioSource.Play();
+
+        result = null;
+        // audioSource = null;
+        kaminingyouDirector = null;
     }
 }

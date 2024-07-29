@@ -16,4 +16,6 @@ public class EventEndTrigger : MonoBehaviour
             }
         }
     }
+
+    void OnDestroy() { ihen = null; }
 }

@@ -6,8 +6,8 @@ using UnityEngine;
 public class Ashioto : MonoBehaviour
 {
     //追従相手
-    public GameObject target;
-    public Rigidbody targetRb;
+    [SerializeField] GameObject target;
+    [SerializeField] Rigidbody targetRb;
 
     //追従相手のx z
     float moveX;
@@ -18,18 +18,22 @@ public class Ashioto : MonoBehaviour
     float checkMax = 1;
 
     //対象の挙動
-    public bool targetIsMove;
+    [SerializeField] bool targetIsMove;
 
     //足音
-    public AudioSource se;
+    [SerializeField] AudioSource se;
 
     void FixedUpdate()
     {
-        //対象が移動しているかどうかをチェックする
-        MoveCheck();
+        if (target != null)
+        {
+            //対象が移動しているかどうかをチェックする
+            MoveCheck();
 
-        //SE、対象が移動していたら鳴らす
-        SePlay();
+            //SE、対象が移動していたら鳴らす
+            SePlay();
+        }
+
     }
 
     //歩いていたら足音を鳴らす ※pitch調節しているだけ
@@ -60,5 +64,17 @@ public class Ashioto : MonoBehaviour
             // Debug.Log(move + "動いている判定");
             targetIsMove = true;
         }
+    }
+
+    public void SetTarget(GameObject target) { this.target = target; }
+    public void SetTargetRb(Rigidbody targetRb) { this.targetRb = targetRb; }
+
+    public void SetSe(AudioSource se) { this.se = se; }
+
+    void OnDestroy()
+    {
+        target = null;
+        targetRb = null;
+        se = null;
     }
 }

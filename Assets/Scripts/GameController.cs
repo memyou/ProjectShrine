@@ -11,7 +11,6 @@ public class GameController : MonoBehaviour
 
     //プレイヤーとそのスクリプト
     [SerializeField] GameObject player;
-    PlayerController playerController;
 
     //進行状況用変数
     int point;
@@ -30,7 +29,7 @@ public class GameController : MonoBehaviour
 
     //異変の発見数を管理する
     HashSet<GameObject> achieveList = new HashSet<GameObject>();
-    public int getAchieve;
+    [SerializeField] int getAchieve;
 
     void Start()
     {
@@ -40,7 +39,6 @@ public class GameController : MonoBehaviour
 
         fade.DoFadeOut();
 
-        playerController = player.GetComponent<PlayerController>();
         point = 0;
 
         pauseUI.SetActive(false);
@@ -69,15 +67,9 @@ public class GameController : MonoBehaviour
         fade.DoFadeIn("Ending-T");
     }
 
-    public void AddPoint()
-    {
-        point++;
-    }
+    public void AddPoint() { point++; }
 
-    public void ResetPoint()
-    {
-        point = 0;
-    }
+    public void ResetPoint() { point = 0; }
 
     //ポイント参照
     public int GetPoint() { return point; }

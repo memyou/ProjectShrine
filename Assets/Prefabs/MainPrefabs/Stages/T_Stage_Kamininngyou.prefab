@@ -317,6 +317,7 @@ MonoBehaviour:
   - {fileID: 2048630485363058575}
   - {fileID: 7003591016790184934}
   - {fileID: 8502546424276928101}
+  count: 0
   countdown: 40
   kaminingyouUI: {fileID: 2947313340676658514}
   kami_count: {fileID: 7266163150547689391}
@@ -324,6 +325,8 @@ MonoBehaviour:
   peelOff: {fileID: 8904988367707110156}
   good: {fileID: 8300000, guid: 9e43058df6ae0534997024ec74e7d87f, type: 3}
   bad: {fileID: 8300000, guid: f82d634e1222690469d13ea4cb558f08, type: 3}
+  peel: {fileID: 8300000, guid: 89865fc582690784c814d89b71b0cbd2, type: 3}
+  audioSource: {fileID: 1410840986381122260}
 --- !u!65 &2619207953317432471
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -954,6 +957,10 @@ PrefabInstance:
       propertyPath: peelOffText
       value: 
       objectReference: {fileID: 7707016663838509785, guid: 7bd02ce9cacce56419a2d8121038457b, type: 3}
+    - target: {fileID: 8444754374273286470, guid: a51dc53ed56cf9a41beffc9e27e07875, type: 3}
+      propertyPath: kaminingyouDirector
+      value: 
+      objectReference: {fileID: 5943731756269863634}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1033,6 +1040,10 @@ PrefabInstance:
       propertyPath: peelOffText
       value: 
       objectReference: {fileID: 7707016663838509785, guid: 7bd02ce9cacce56419a2d8121038457b, type: 3}
+    - target: {fileID: 8444754374273286470, guid: a51dc53ed56cf9a41beffc9e27e07875, type: 3}
+      propertyPath: kaminingyouDirector
+      value: 
+      objectReference: {fileID: 5943731756269863634}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1112,6 +1123,10 @@ PrefabInstance:
       propertyPath: peelOffText
       value: 
       objectReference: {fileID: 7707016663838509785, guid: 7bd02ce9cacce56419a2d8121038457b, type: 3}
+    - target: {fileID: 8444754374273286470, guid: a51dc53ed56cf9a41beffc9e27e07875, type: 3}
+      propertyPath: kaminingyouDirector
+      value: 
+      objectReference: {fileID: 5943731756269863634}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1195,6 +1210,10 @@ PrefabInstance:
       propertyPath: targetLayer.m_Bits
       value: 256
       objectReference: {fileID: 0}
+    - target: {fileID: 8444754374273286470, guid: a51dc53ed56cf9a41beffc9e27e07875, type: 3}
+      propertyPath: kaminingyouDirector
+      value: 
+      objectReference: {fileID: 5943731756269863634}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1274,6 +1293,10 @@ PrefabInstance:
       propertyPath: peelOffText
       value: 
       objectReference: {fileID: 7707016663838509785, guid: 7bd02ce9cacce56419a2d8121038457b, type: 3}
+    - target: {fileID: 8444754374273286470, guid: a51dc53ed56cf9a41beffc9e27e07875, type: 3}
+      propertyPath: kaminingyouDirector
+      value: 
+      objectReference: {fileID: 5943731756269863634}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1353,6 +1376,10 @@ PrefabInstance:
       propertyPath: peelOffText
       value: 
       objectReference: {fileID: 7707016663838509785, guid: 7bd02ce9cacce56419a2d8121038457b, type: 3}
+    - target: {fileID: 8444754374273286470, guid: a51dc53ed56cf9a41beffc9e27e07875, type: 3}
+      propertyPath: kaminingyouDirector
+      value: 
+      objectReference: {fileID: 5943731756269863634}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1432,6 +1459,10 @@ PrefabInstance:
       propertyPath: peelOffText
       value: 
       objectReference: {fileID: 7707016663838509785, guid: 7bd02ce9cacce56419a2d8121038457b, type: 3}
+    - target: {fileID: 8444754374273286470, guid: a51dc53ed56cf9a41beffc9e27e07875, type: 3}
+      propertyPath: kaminingyouDirector
+      value: 
+      objectReference: {fileID: 5943731756269863634}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1511,6 +1542,10 @@ PrefabInstance:
       propertyPath: peelOffText
       value: 
       objectReference: {fileID: 7707016663838509785, guid: 7bd02ce9cacce56419a2d8121038457b, type: 3}
+    - target: {fileID: 8444754374273286470, guid: a51dc53ed56cf9a41beffc9e27e07875, type: 3}
+      propertyPath: kaminingyouDirector
+      value: 
+      objectReference: {fileID: 5943731756269863634}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1590,6 +1625,10 @@ PrefabInstance:
       propertyPath: peelOffText
       value: 
       objectReference: {fileID: 7707016663838509785, guid: 7bd02ce9cacce56419a2d8121038457b, type: 3}
+    - target: {fileID: 8444754374273286470, guid: a51dc53ed56cf9a41beffc9e27e07875, type: 3}
+      propertyPath: kaminingyouDirector
+      value: 
+      objectReference: {fileID: 5943731756269863634}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1669,6 +1708,10 @@ PrefabInstance:
       propertyPath: peelOffText
       value: 
       objectReference: {fileID: 7707016663838509785, guid: 7bd02ce9cacce56419a2d8121038457b, type: 3}
+    - target: {fileID: 8444754374273286470, guid: a51dc53ed56cf9a41beffc9e27e07875, type: 3}
+      propertyPath: kaminingyouDirector
+      value: 
+      objectReference: {fileID: 5943731756269863634}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1748,6 +1791,10 @@ PrefabInstance:
       propertyPath: peelOffText
       value: 
       objectReference: {fileID: 7707016663838509785, guid: 7bd02ce9cacce56419a2d8121038457b, type: 3}
+    - target: {fileID: 8444754374273286470, guid: a51dc53ed56cf9a41beffc9e27e07875, type: 3}
+      propertyPath: kaminingyouDirector
+      value: 
+      objectReference: {fileID: 5943731756269863634}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1827,6 +1874,10 @@ PrefabInstance:
       propertyPath: peelOffText
       value: 
       objectReference: {fileID: 7707016663838509785, guid: 7bd02ce9cacce56419a2d8121038457b, type: 3}
+    - target: {fileID: 8444754374273286470, guid: a51dc53ed56cf9a41beffc9e27e07875, type: 3}
+      propertyPath: kaminingyouDirector
+      value: 
+      objectReference: {fileID: 5943731756269863634}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1906,6 +1957,10 @@ PrefabInstance:
       propertyPath: peelOffText
       value: 
       objectReference: {fileID: 7707016663838509785, guid: 7bd02ce9cacce56419a2d8121038457b, type: 3}
+    - target: {fileID: 8444754374273286470, guid: a51dc53ed56cf9a41beffc9e27e07875, type: 3}
+      propertyPath: kaminingyouDirector
+      value: 
+      objectReference: {fileID: 5943731756269863634}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1985,6 +2040,10 @@ PrefabInstance:
       propertyPath: peelOffText
       value: 
       objectReference: {fileID: 7707016663838509785, guid: 7bd02ce9cacce56419a2d8121038457b, type: 3}
+    - target: {fileID: 8444754374273286470, guid: a51dc53ed56cf9a41beffc9e27e07875, type: 3}
+      propertyPath: kaminingyouDirector
+      value: 
+      objectReference: {fileID: 5943731756269863634}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2064,6 +2123,10 @@ PrefabInstance:
       propertyPath: peelOffText
       value: 
       objectReference: {fileID: 7707016663838509785, guid: 7bd02ce9cacce56419a2d8121038457b, type: 3}
+    - target: {fileID: 8444754374273286470, guid: a51dc53ed56cf9a41beffc9e27e07875, type: 3}
+      propertyPath: kaminingyouDirector
+      value: 
+      objectReference: {fileID: 5943731756269863634}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2201,6 +2264,10 @@ PrefabInstance:
       propertyPath: peelOffText
       value: 
       objectReference: {fileID: 7707016663838509785, guid: 7bd02ce9cacce56419a2d8121038457b, type: 3}
+    - target: {fileID: 8444754374273286470, guid: a51dc53ed56cf9a41beffc9e27e07875, type: 3}
+      propertyPath: kaminingyouDirector
+      value: 
+      objectReference: {fileID: 5943731756269863634}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

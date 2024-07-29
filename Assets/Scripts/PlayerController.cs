@@ -8,14 +8,14 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     //向いている方向
-    public Transform orientation;
+    [SerializeField] Transform orientation;
 
-    public GameObject player;
+    [SerializeField] GameObject player;
 
     //振り返っていないかどうかを判定するレイの情報とbool
     Ray checkLookBack_ray;
     bool isLookBack;
-    public LayerMask lookbackLayer;
+    [SerializeField] LayerMask lookbackLayer;
 
     //rigidbody
     Rigidbody rb;
@@ -31,12 +31,12 @@ public class PlayerController : MonoBehaviour
     Vector3 moveInput; //移動入力値
     Vector3 moveDirection; //実際の移動距離
 
-    public float walkSpeed = 1f; //歩行速度
-    public float runSpeed = 3f; //走行速度
+    [SerializeField] float walkSpeed = 1f; //歩行速度
+    [SerializeField] float runSpeed = 3f; //走行速度
 
     //足音
-    public AudioClip walkSE;
-    public AudioClip runSE;
+    [SerializeField] AudioClip walkSE;
+    [SerializeField] AudioClip runSE;
 
 
     //プレイヤーの状態

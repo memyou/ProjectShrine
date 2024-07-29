@@ -5138,6 +5138,7 @@ MonoBehaviour:
   playerController: {fileID: 6613123499306366554}
   gameController: {fileID: 1055887655}
   fade: {fileID: 1892180660}
+  audioSource: {fileID: 2117642245}
 --- !u!4 &2117642244
 Transform:
   m_ObjectHideFlags: 0

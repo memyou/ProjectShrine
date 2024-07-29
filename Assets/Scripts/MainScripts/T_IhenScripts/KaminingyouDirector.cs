@@ -13,11 +13,11 @@ using UnityEngine.Rendering;
 public class KaminingyouDirector : MonoBehaviour
 {
     //紙人形配列
-    public GameObject[] kamininngyous;
-    public static int count;
+    [SerializeField] GameObject[] kamininngyous;
+    [SerializeField] int count;
 
     //カウントダウン
-    public float countdown = 30f;
+    [SerializeField] float countdown = 30f;
 
     //入ってから初回のみ挑戦可能
     bool isTry;
@@ -29,15 +29,16 @@ public class KaminingyouDirector : MonoBehaviour
     bool isChallenge;
 
     //UI
-    public GameObject kaminingyouUI;
-    public TextMeshProUGUI kami_count;
-    public TextMeshProUGUI timetext;
-    public TextMeshProUGUI peelOff;
+    [SerializeField] GameObject kaminingyouUI;
+    [SerializeField] TextMeshProUGUI kami_count;
+    [SerializeField] TextMeshProUGUI timetext;
+    [SerializeField] TextMeshProUGUI peelOff;
 
     //SE
-    public AudioClip good;
-    public AudioClip bad;
-    AudioSource audioSource;
+    [SerializeField] AudioClip good;
+    [SerializeField] AudioClip bad;
+    [SerializeField] AudioClip peel;
+    [SerializeField] AudioSource audioSource;
 
     private void Start()
     {
@@ -143,5 +144,19 @@ public class KaminingyouDirector : MonoBehaviour
 
         //コルーチン停止
         yield break;
+    }
+
+    public void Kami_peelOff()
+    {
+        audioSource.PlayOneShot(peel);
+        count--;
+    }
+
+    void OnDestroy()
+    {
+        kamininngyous = null;
+        kaminingyouUI = null;
+        kami_count = timetext = peelOff = null;
+        good = bad = null;
     }
 }

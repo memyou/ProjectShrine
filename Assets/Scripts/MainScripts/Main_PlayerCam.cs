@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class Main_PlayerCam : MonoBehaviour
 {
-    public float sensX;
-    public float sensY;
+    [SerializeField] float sensX;
+    [SerializeField] float sensY;
 
-    public Transform orientation;
-    public Transform CamHolder;
+    [SerializeField] Transform orientation;
+    [SerializeField] Transform CamHolder;
 
     float xRotation;
     float yRotation;
 
-    public PlayerController playerController;
-    public StageGenerator stageGenerator;
+    [SerializeField] PlayerController playerController;
+    [SerializeField] StageGenerator stageGenerator;
 
     void FixedUpdate()
     {

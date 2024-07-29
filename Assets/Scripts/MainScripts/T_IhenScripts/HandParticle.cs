@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class HandParticle : MonoBehaviour
 {
-    public GameObject handParticle;
+    [SerializeField] GameObject handParticle;
 
     void Start()
     {
@@ -16,4 +16,6 @@ public class HandParticle : MonoBehaviour
     {
         handParticle.SetActive(true);
     }
+
+    void OnDestroy() { handParticle = null; }
 }

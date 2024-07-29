@@ -32,4 +32,10 @@ public class ScoreDirector : MonoBehaviour
             info.SetActive(true);
         }
     }
+
+    void OnDestroy()
+    {
+        gameController = null;
+        paper = null;
+    }
 }

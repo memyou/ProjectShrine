@@ -36420,6 +36420,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inari: {fileID: 4452823762007420723}
   prayUI: {fileID: 5139739259679826748}
+  audioSource: {fileID: 5214831920821631724}
 --- !u!1 &4325979295299454886
 GameObject:
   m_ObjectHideFlags: 0

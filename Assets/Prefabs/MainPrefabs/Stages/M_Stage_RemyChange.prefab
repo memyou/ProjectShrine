@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8547204328493263052
 Transform:
   m_ObjectHideFlags: 0
@@ -343,6 +343,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6679737896237462473, guid: 60191d59cf04c4449b7e3fb73f199968, type: 3}
   m_PrefabInstance: {fileID: 5093699615781257426}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1990390854911822252 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6714652913447930238, guid: 60191d59cf04c4449b7e3fb73f199968, type: 3}
+  m_PrefabInstance: {fileID: 5093699615781257426}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3539518062748254237 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8623988927476252879, guid: 60191d59cf04c4449b7e3fb73f199968, type: 3}
@@ -400,6 +405,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3451134764004559571, guid: 83ce122904bc4db4c9bc56fa237f3b0f, type: 3}
+      propertyPath: remy
+      value: 
+      objectReference: {fileID: 1990390854911822252}
     - target: {fileID: 3884972407333720860, guid: 83ce122904bc4db4c9bc56fa237f3b0f, type: 3}
       propertyPath: m_VersionIndex
       value: 10586

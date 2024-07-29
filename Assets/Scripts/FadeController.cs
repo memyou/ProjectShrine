@@ -12,22 +12,13 @@ public class FadeController : MonoBehaviour
     [SerializeField] float fadeDuration = 1.0f;
 
     //パネル設定の色を使用するFadeIn
-    public void DoFadeIn()
-    {
-        StartCoroutine(FadeIn());
-    }
+    public void DoFadeIn() { StartCoroutine(FadeIn()); }
 
     //パネル設定の色を使用するシーン遷移つきFadeIn
-    public void DoFadeIn(string nextSceneName)
-    {
-        StartCoroutine(FadeIn(nextSceneName));
-    }
+    public void DoFadeIn(string nextSceneName) { StartCoroutine(FadeIn(nextSceneName)); }
 
     //パネル設定の色を使用するfadeOut
-    public void DoFadeOut()
-    {
-        StartCoroutine(FadeOut());
-    }
+    public void DoFadeOut() { StartCoroutine(FadeOut()); }
 
     //fadeIn
     public IEnumerator FadeIn()
@@ -62,7 +53,7 @@ public class FadeController : MonoBehaviour
     public IEnumerator FadeOut()
     {
         //フェード開始時の色
-        Color startColor = new Color(0.0f, 0.0f, 0.0f, 1.0f);
+        Color startColor = new Color(fadePanel.color.r, fadePanel.color.g, fadePanel.color.b, 1.0f);
         //終了時の色
         Color endColor = new Color(startColor.r, startColor.g, startColor.b, 0.0f);
 
